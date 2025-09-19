@@ -4,103 +4,95 @@
 
 Este documento define os requisitos de negócio do sistema HelpFast, estabelecendo metas, objetivos e métricas de sucesso para o projeto de gerenciamento de chamados de suporte técnico.
 
-## 🎯 **Objetivos Estratégicos**
+## 📋 **Requisitos de Usuário (RU)**
 
-### **Redução de Custos Operacionais**
-- **Meta:** Reduzir custos com suporte técnico em 40%
-- **Estratégia:** Automação via IA e FAQ
-- **Métrica:** Custo por chamado resolvido
+### **1.1. Requisitos do Usuário Final**
+- **RU001:** Abastecimento de Chamados - O usuário deve ser capaz de abrir novos chamados de suporte no sistema
+- **RU002:** Visualização de FAQ - O usuário deve conseguir visualizar uma seção de FAQ (Perguntas Frequentes) para tentar solucionar problemas sem a necessidade de um atendimento humano
+- **RU003:** Pré-atendimento com IA - O usuário deve ter a opção de interagir com uma inteligência artificial para tentar resolver seu ticket antes de passá-lo a um técnico
+- **RU004:** Histórico de Chamados - O usuário deve visualizar seu histórico de chamados, incluindo dados como ID, data de abertura e status
+- **RU005:** Notificação de Alterações - O usuário deve ser notificado sobre qualquer alteração no status de seu ticket (Pendente de Validar se será mantido)
 
-### **Melhoria da Experiência do Cliente**
-- **Meta:** Aumentar satisfação do cliente em 80%
-- **Estratégia:** Resposta rápida e personalizada
-- **Métrica:** NPS (Net Promoter Score) > 8
+### **1.2. Requisitos do Técnico**
+- **RU006:** Visualização de Chamados - O técnico deve ser capaz de visualizar e atender os chamados que lhe foram atribuídos
+- **RU007:** Alteração de Status - O técnico deve ter a permissão de alterar o status dos chamados que estão sob sua responsabilidade
 
-### **Otimização de Processos**
-- **Meta:** Reduzir tempo médio de resolução em 60%
-- **Estratégia:** Automação e fluxos otimizados
-- **Métrica:** Tempo médio de resolução < 4 horas
+### **1.3. Requisitos do Administrador (Admin)**
+- **RU008:** Gerenciamento de Chamados - O administrador deve ter a capacidade de gerenciar todos os chamados do sistema
+- **RU009:** Alteração de Status - O administrador deve ser capaz de alterar o status de todos os chamados
+- **RU010:** Gerenciamento de Usuários - O administrador deve gerenciar todos os usuários do sistema, com funções para adicionar, remover e alterar informações
+- **RU011:** Atribuição de Chamados - O administrador deve ser capaz de atribuir chamados a técnicos específicos
+- **RU012:** Hierarquia de Perfis - O sistema deve possuir uma hierarquia clara entre os perfis de usuário (Usuário, Técnico e Admin), com níveis de acesso e permissões distintos
 
-## 📊 **Métricas de Sucesso (KPIs)**
+## 🔧 **Requisitos de Sistema (RS)**
 
-### **1. Eficiência Operacional**
+### **2.1. Requisitos de Autenticação e Dados**
+- **RS001:** Login do Usuário - O sistema deve permitir que o usuário realize o login
+- **RS002:** Autenticação de Usuários - O sistema deve autenticar as informações de login dos usuários
+- **RS003:** Cadastro de Usuários - O sistema deve permitir o cadastro de novos usuários
+- **RS004:** Registro de Alterações - O sistema deve registrar todas as alterações realizadas nos chamados em uma tabela de log específica
 
-| Métrica | Baseline | Meta | Prazo |
-|---------|----------|------|-------|
-| Tempo médio de resolução | 8 horas | 4 horas | 6 meses |
-| Taxa de resolução no primeiro contato | 30% | 70% | 6 meses |
-| Redução de atraso na solução | 0% | 80% | 12 meses |
-| Redução de perda de receita | 0% | 90% | 12 meses |
+### **2.2. Requisitos de Automação de Chamados**
+- **RS005:** Categorização Automática de Chamados - O sistema deve usar a inteligência artificial para analisar o conteúdo dos chamados e atribuir uma categoria automaticamente
+- **RS006:** Atribuição Automática de Chamados - O sistema deve atribuir automaticamente os chamados a um técnico ou equipe responsável com base na categoria definida pela IA
 
-### **2. Satisfação do Cliente**
+## ⚙️ **Requisitos Funcionais (RF)**
 
-| Métrica | Baseline | Meta | Prazo |
-|---------|----------|------|-------|
-| Satisfação geral | 3.0/5 | 4.5/5 | 6 meses |
-| Tempo de resposta inicial | 2 horas | 30 minutos | 3 meses |
-| Taxa de reabertura | 20% | 5% | 9 meses |
-| NPS | 5 | 8 | 12 meses |
+### **3.1. Funcionalidades de Negócio**
+- **RF001:** Sistema de Chamados - O sistema deve gerenciar todo o ciclo de vida dos chamados de suporte
+- **RF002:** Sistema de FAQ - O sistema deve fornecer uma base de conhecimento com perguntas frequentes
+- **RF003:** Sistema de IA - O sistema deve integrar inteligência artificial para pré-atendimento
+- **RF004:** Sistema de Notificações - O sistema deve enviar notificações sobre mudanças de status
+- **RF005:** Sistema de Relatórios - O sistema deve gerar relatórios de performance e métricas
+- **RF006:** Sistema de Auditoria - O sistema deve manter logs de todas as operações realizadas
 
-### **3. Automação e IA**
+## 🚫 **Requisitos Não Funcionais (RNF)**
 
-| Métrica | Baseline | Meta | Prazo |
-|---------|----------|------|-------|
-| Resolução via FAQ | 0% | 50% | 6 meses |
-| Resolução via IA | 0% | 60% | 9 meses |
-| Redução de chamados simples | 0% | 70% | 12 meses |
-| Eficiência na resolução | 0% | 60% | 12 meses |
+### **4.1. Requisitos de Desempenho e Escalabilidade**
+- **RNF001:** Painel em Tempo Real - O painel de chamados deve ser atualizado em tempo real para todos os usuários
+- **RNF002:** Disponibilidade - O sistema deve estar disponível 24/7
+- **RNF003:** Suporte Multiplataforma - O sistema deve suportar as plataformas Mobile, Desktop e Web
+- **RNF004:** Acessos Simultâneos - O sistema deve suportar até 10 acessos simultâneos (valor de exemplo) sem alteração na performance
+- **RNF005:** Tempo de Resposta - O tempo de resposta para qualquer ação do usuário deve ser inferior a 5 segundos (valor de exemplo)
+- **RNF006:** Escalabilidade - O sistema deve ser escalável para uma possível expansão futura
 
-## 🏢 **Requisitos Funcionais de Negócio**
+### **4.2. Requisitos de Segurança e Conformidade (LGPD)**
+- **RNF007:** Proteção de Dados - Os dados sensíveis dos usuários devem ser protegidos e criptografados
+- **RNF008:** Conformidade com a LGPD - O sistema deve estar em total conformidade com a Lei Geral de Proteção de Dados (LGPD)
+- **RNF009:** Termos de Privacidade - O sistema deve apresentar termos de privacidade claros, informando aos usuários quais dados serão coletados e o que será feito com eles
+- **RNF010:** Limitação de Acesso - Deve-se implementar limites na disponibilidade dos dados com base na hierarquia de perfis para garantir a privacidade
+- **RNF011:** Plano de Incidente - Deve haver um plano de ação em caso de vazamento de dados
 
-### **1. Gestão de Chamados**
-- **RF001:** Sistema deve permitir abertura de chamados 24/7
-- **RF002:** Chamados devem ser categorizados por prioridade
-- **RF003:** Sistema deve notificar mudanças de status em tempo real
-- **RF004:** Histórico completo deve ser mantido para auditoria
+### **4.3. Requisitos de Usabilidade e Acessibilidade**
+- **RNF012:** Interface Intuitiva - A interface do sistema deve ser simples e intuitiva para todos os usuários
+- **RNF013:** Acessibilidade - O sistema deve possuir acessibilidade para pessoas com necessidades especiais
 
-### **2. Automação Inteligente**
-- **RF005:** IA deve responder 60% dos chamados sem intervenção humana
-- **RF006:** FAQ deve resolver 50% dos problemas básicos
-- **RF007:** Sistema deve sugerir soluções baseadas em histórico
-- **RF008:** Escalação automática quando IA não consegue resolver
+### **4.4. Requisitos de Integração e Arquitetura**
+- **RNF014:** Integração com IA - O sistema deve utilizar a API da OpenAI para trabalhar com a inteligência artificial
+- **RNF015:** Banco de Dados - O sistema deve utilizar um único banco de dados relacional para todas as plataformas
 
-### **3. Gestão de Usuários**
-- **RF009:** Sistema deve suportar três tipos de usuário (Cliente, Técnico, Admin)
-- **RF010:** Cadastro de clientes deve ser self-service
-- **RF011:** Técnicos e admins devem ser cadastrados por administradores
-- **RF012:** Sistema deve rastrear quem criou cada usuário
+## 💼 **Requisitos de Negócio (RN)**
 
-### **4. Relatórios e Analytics**
-- **RF013:** Sistema deve gerar relatórios de performance em tempo real
-- **RF014:** Métricas de SLA devem ser monitoradas continuamente
-- **RF015:** Relatórios devem ser exportáveis em PDF/Excel
-- **RF016:** Dashboard executivo deve estar disponível 24/7
+### **5.1. Redução de Atraso**
+- **RN001:** Redução de Atraso - Reduzir o atraso na solução dos tickets em 80%
 
-## 🚫 **Requisitos Não Funcionais**
+### **5.2. Redução de Perda de Receita**
+- **RN002:** Redução de Perda de Receita - Reduzir a perda de receita por problemas técnicos em 90%
 
-### **1. Performance**
-- **RNF001:** Tempo de resposta < 5 segundos para qualquer ação
-- **RNF002:** Sistema deve suportar 10 usuários simultâneos
-- **RNF003:** Disponibilidade de 99.9% (máximo 8.77h downtime/ano)
-- **RNF004:** Painel deve ser atualizado em tempo real
+### **5.3. Aumento de Eficiência (FAQ)**
+- **RN003:** Aumento de Eficiência (FAQ) - Aumentar a eficiência na resolução de problemas simples em no mínimo 50% através do FAQ
 
-### **2. Escalabilidade**
-- **RNF005:** Sistema deve ser escalável para 100 usuários simultâneos
-- **RNF006:** Banco de dados deve suportar 1 milhão de chamados
-- **RNF007:** Arquitetura deve permitir expansão futura
-- **RNF008:** Suporte a múltiplas plataformas (Web, Desktop, Mobile)
+### **5.4. Aumento de Resolução (IA/FAQ)**
+- **RN004:** Aumento de Resolução (IA/FAQ) - Aumentar em 60% a resolução dos chamados apenas com o uso da IA e do FAQ
 
-### **3. Segurança**
-- **RNF009:** Conformidade total com LGPD
-- **RNF010:** Dados sensíveis devem ser criptografados
-- **RNF011:** Sistema deve implementar controle de acesso baseado em roles
-- **RNF012:** Logs de auditoria devem ser mantidos por 7 anos
+### **5.5. Redução de Custos**
+- **RN005:** Redução de Custos - Reduzir os custos com problemas recorrentes
 
-### **4. Usabilidade**
-- **RNF013:** Interface deve ser intuitiva para usuários não técnicos
-- **RNF014:** Sistema deve ter acessibilidade para pessoas com necessidades especiais
-- **RNF015:** Tempo de treinamento < 2 horas para novos usuários
-- **RNF016:** Sistema deve funcionar em dispositivos móveis
+### **5.6. Aumento de Satisfação**
+- **RN006:** Aumento de Satisfação - Aumentar a satisfação do usuário em 80%
+
+### **5.7. Identificação de Padrões**
+- **RN007:** Identificação de Padrões - Registrar todos os chamados para identificar possíveis padrões e a recorrência de problemas
 
 ## 🔐 **Conformidade e Regulamentação**
 
@@ -116,44 +108,99 @@ Este documento define os requisitos de negócio do sistema HelpFast, estabelecen
 - **Transparência:** Política de privacidade clara
 - **Segurança:** Criptografia e controles de acesso
 
-## 💰 **Análise de ROI (Return on Investment)**
 
-### **Investimento Inicial**
-- **Desenvolvimento:** R$ 150.000 (6 meses)
-- **Infraestrutura:** R$ 5.000/mês (Azure + Oracle Cloud)
-- **Treinamento:** R$ 10.000
-- **Total Inicial:** R$ 175.000
+## 📈 **Plano de Implementação - 4 Meses (Agosto a Novembro 2025)**
 
-### **Economia Esperada (Anual)**
-- **Redução de custos operacionais:** R$ 200.000
-- **Aumento de produtividade:** R$ 150.000
-- **Redução de perda de receita:** R$ 300.000
-- **Total de Economia:** R$ 650.000
+### **Agosto 2025 - Estruturação e Planejamento** ✅ **CONCLUÍDO**
+- [x] **Definição de requisitos funcionais e não funcionais**
+- [x] **Análise de viabilidade técnica e financeira**
+- [x] **Estruturação da arquitetura do sistema**
+- [x] **Definição das tecnologias e infraestrutura**
+- [x] **Criação da documentação técnica inicial**
+- [x] **Planejamento detalhado do projeto**
 
-### **ROI Projetado**
-- **Payback Period:** 3,2 meses
-- **ROI Anual:** 271%
-- **NPV (3 anos):** R$ 1.450.000
+### **Setembro 2025 - Prototipagem e Arquitetura** 🔄 **EM ANDAMENTO**
+- [ ] **Criação de protótipos de interface (Web, Mobile, Desktop)**
+- [ ] **Definição detalhada da arquitetura de componentes**
+- [x] **Configuração do ambiente de desenvolvimento**
+- [x] **Criação do banco de dados e estrutura inicial**
+- [ ] **Implementação da autenticação e perfis de usuário**
+- [ ] **Desenvolvimento do sistema básico de chamados**
 
-## 📈 **Plano de Implementação**
+### **Outubro 2025 - Desenvolvimento Core e IA**
+- [ ] **Implementação completa do sistema de chamados**
+- [ ] **Integração com OpenAI API para automação**
+- [ ] **Desenvolvimento do sistema de notificações**
+- [ ] **Criação do dashboard e relatórios básicos**
+- [ ] **Implementação do sistema FAQ**
+- [ ] **Testes de integração e validação**
 
-### **Fase 1: MVP (0-3 meses)**
-- Sistema básico de chamados
-- Autenticação e perfis de usuário
-- Dashboard simples
-- FAQ básico
+### **Novembro 2025 - Finalização e Deploy**
+- [ ] **Desenvolvimento das aplicações Mobile (Android) e Desktop (C#)**
+- [ ] **Implementação de analytics e métricas avançadas**
+- [ ] **Testes de aceitação e validação completa**
+- [ ] **Treinamento de usuários e documentação final**
+- [ ] **Deploy em produção e monitoramento**
+- [ ] **Suporte pós-implementação e ajustes finais**
 
-### **Fase 2: Automação (3-6 meses)**
-- Integração com IA (OpenAI)
-- Sistema de notificações
-- Relatórios básicos
-- Melhorias de UX
+### **Cronograma Detalhado por Mês**
 
-### **Fase 3: Otimização (6-12 meses)**
-- Analytics avançados
-- Mobile app
-- Integrações externas
-- Machine learning
+#### **Agosto 2025** ✅
+- **Semana 1-2:** Análise de requisitos e viabilidade
+- **Semana 3-4:** Arquitetura e documentação técnica
+
+#### **Setembro 2025** 🔄
+- **Semana 1-2:** Prototipagem e configuração de ambiente
+- **Semana 3-4:** Desenvolvimento da base do sistema
+
+#### **Outubro 2025** 📅
+- **Semana 1-2:** Integração com IA e notificações
+- **Semana 3-4:** Dashboard, relatórios e testes
+
+#### **Novembro 2025** 📅
+- **Semana 1-2:** Aplicações Mobile e Desktop
+- **Semana 3-4:** Deploy, treinamento e suporte
+
+### **Marcos Importantes do Projeto**
+
+#### **Marco 1 - Final de Setembro 2025** 🎯
+- **Objetivo:** Base do sistema funcionando
+- **Entregáveis:**
+  - Protótipos aprovados
+  - Banco de dados configurado
+  - Autenticação implementada
+  - Sistema básico de chamados operacional
+
+#### **Marco 2 - Final de Outubro 2025** 🎯
+- **Objetivo:** Sistema completo com IA
+- **Entregáveis:**
+  - Integração com OpenAI funcionando
+  - Sistema de notificações ativo
+  - Dashboard e relatórios básicos
+  - FAQ implementado
+
+#### **Marco 3 - Final de Novembro 2025** 🎯
+- **Objetivo:** Sistema em produção
+- **Entregáveis:**
+  - Aplicações Mobile e Desktop prontas
+  - Sistema em produção
+  - Usuários treinados
+  - Suporte ativo
+
+### **Indicadores de Progresso**
+
+#### **Setembro 2025** (Atual)
+- **Progresso:** 25% do projeto
+- **Status:** Prototipagem e arquitetura
+- **Próximos passos:** Desenvolvimento da base do sistema
+
+#### **Outubro 2025**
+- **Progresso esperado:** 60% do projeto
+- **Foco:** Integração com IA e funcionalidades core
+
+#### **Novembro 2025**
+- **Progresso esperado:** 100% do projeto
+- **Foco:** Finalização e deploy em produção
 
 ## 🎯 **Critérios de Aceitação**
 
@@ -168,58 +215,3 @@ Este documento define os requisitos de negócio do sistema HelpFast, estabelecen
 - [ ] Documentação técnica completa
 - [ ] Treinamento de usuários realizado
 - [ ] Suporte pós-implementação definido
-
-## 🚀 **Benefícios Esperados**
-
-### **Para a Empresa**
-- **Redução de 40% nos custos operacionais**
-- **Aumento de 60% na eficiência de atendimento**
-- **Melhoria de 80% na satisfação do cliente**
-- **Redução de 90% na perda de receita por problemas técnicos**
-
-### **Para os Clientes**
-- **Resposta em tempo real**
-- **Acesso 24/7 ao suporte**
-- **Soluções personalizadas via IA**
-- **Transparência total do processo**
-
-### **Para os Técnicos**
-- **Ferramentas mais eficientes**
-- **Menos chamados repetitivos**
-- **Melhor organização do trabalho**
-- **Dados para tomada de decisão**
-
-## 📝 **Riscos e Mitigações**
-
-### **Riscos Técnicos**
-- **Risco:** Falha na integração com IA
-- **Mitigação:** Implementar fallback para atendimento humano
-
-### **Riscos de Negócio**
-- **Risco:** Resistência dos usuários à mudança
-- **Mitigação:** Programa de treinamento e comunicação
-
-### **Riscos Operacionais**
-- **Risco:** Aumento temporário de chamados durante migração
-- **Mitigação:** Implementação gradual e suporte extra
-
-## 📊 **Monitoramento Contínuo**
-
-### **Métricas Mensais**
-- Volume de chamados
-- Tempo médio de resolução
-- Satisfação do cliente
-- Utilização de IA e FAQ
-
-### **Relatórios Trimestrais**
-- Análise de tendências
-- ROI e economia de custos
-- Feedback dos usuários
-- Plano de melhorias
-
-### **Auditoria Anual**
-- Conformidade com LGPD
-- Segurança do sistema
-- Performance vs. metas
-- Estratégia de evolução
-

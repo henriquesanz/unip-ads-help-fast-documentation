@@ -152,6 +152,26 @@ public class Chamado
 - Chamados mais frequentes
 - Tempo de resposta por prioridade
 
+## 🤖 **Automação de Chamados**
+
+### **Categorização Automática:**
+- **IA Analisa:** Conteúdo do chamado automaticamente
+- **Categoria Sugerida:** Sistema sugere categoria baseada na descrição
+- **Validação:** Técnico pode confirmar ou alterar categoria
+- **Aprendizado:** IA melhora com feedback dos técnicos
+
+### **Atribuição Automática:**
+- **Baseada na Categoria:** Chamados são direcionados para técnicos especializados
+- **Carga de Trabalho:** Considera disponibilidade dos técnicos
+- **Histórico:** Prioriza técnicos com experiência na categoria
+- **Fallback:** Se não houver técnico especializado, atribui ao mais disponível
+
+### **Registro de Padrões:**
+- **Análise de Recorrência:** Identifica problemas que se repetem
+- **Tendências:** Detecta padrões de problemas por período
+- **Alertas:** Notifica sobre aumento de problemas específicos
+- **Relatórios:** Gera insights sobre problemas recorrentes
+
 ## 🚀 **Funcionalidades Futuras**
 
 1. **Sistema de FAQ integrado**

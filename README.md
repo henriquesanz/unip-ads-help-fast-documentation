@@ -57,14 +57,36 @@ O HelpFast é um sistema multiplataforma de gerenciamento de chamados de suporte
 - Segurança e autenticação
 - Deploy e DevOps
 
-### **8. 💼 [Requisitos de Negócio](REQUISITOS_NEGOCIO.md)**
+### **8. 📊 [Diagrama de Componentes](DIAGRAMA_COMPONENTES.md)**
+- Visualização da arquitetura de componentes
+- Azure Cloud: Azure SQL Database
+- Oracle Cloud: HelpFast WebApp e Java API
+- Aplicativos nativos: Mobile (Java Android) e Desktop (C#)
+- Fluxo de comunicação entre componentes
+- Integrações externas (OpenAI API)
+
+### **9. 🔌 [Java API - Contrato Swagger](JAVA_API_SWAGGER.md)**
+- Documentação completa da API Java
+- Endpoints para processamento de IA
+- Contrato de integração com OpenAI
+- Especificações de notificações por email
+- Modelos de dados e exemplos de uso
+
+### **10. 🗄️ [Estrutura de Dados e Banco](ESTRUTURA_DADOS_BANCO.md)**
+- Esquema completo do banco de dados
+- Tabelas, relacionamentos e índices
+- Scripts de criação e manutenção
+- Políticas de segurança e conformidade LGPD
+- Procedures e views para performance
+
+### **11. 💼 [Requisitos de Negócio](REQUISITOS_NEGOCIO.md)**
 - Objetivos estratégicos
 - Métricas de sucesso (KPIs)
 - Análise de ROI
 - Conformidade LGPD
 - Plano de implementação
 
-### **9. 🧪 [Teste de Login](TESTE_LOGIN.md)**
+### **12. 🧪 [Teste de Login](TESTE_LOGIN.md)**
 - Cenários de teste para autenticação
 - Dados de teste disponíveis
 - Validações de segurança
@@ -73,7 +95,6 @@ O HelpFast é um sistema multiplataforma de gerenciamento de chamados de suporte
 ## 🚀 **Quick Start**
 
 ### **1. Fazer Login**
-- **URL:** http://localhost:5000
 - **Email:** admin@helpfast.com
 - **Senha:** 123456
 
@@ -90,6 +111,8 @@ O HelpFast é um sistema multiplataforma de gerenciamento de chamados de suporte
 | Tempo médio de resolução | < 4 horas | 🟡 Em desenvolvimento |
 | Taxa de resolução no primeiro contato | > 70% | 🟡 Em desenvolvimento |
 | Satisfação do cliente | > 4.5/5 | 🟡 Em desenvolvimento |
+| Redução de atraso na solução | 80% | 🔴 Não implementado |
+| Redução de perda de receita | 90% | 🔴 Não implementado |
 | Resolução via FAQ | 50% | 🔴 Não implementado |
 | Resolução via IA | 60% | 🔴 Não implementado |
 
@@ -116,6 +139,9 @@ O HelpFast é um sistema multiplataforma de gerenciamento de chamados de suporte
 - [ ] HelpFast WebApp (ASP.NET Core)
 - [ ] Java API para integração com IA
 - [ ] Deploy no Oracle Cloud
+- [ ] Categorização automática de chamados via IA
+- [ ] Atribuição automática de chamados
+- [ ] Identificação de padrões e recorrência
 - [ ] Integração com sistemas externos
 - [ ] Machine learning avançado
 - [ ] Sistema de SLA automatizado

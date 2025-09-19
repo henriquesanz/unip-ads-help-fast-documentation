@@ -4,43 +4,15 @@
 
 O HelpFast é um sistema multiplataforma de gerenciamento de chamados que utiliza uma arquitetura moderna baseada em microsserviços, com componentes distribuídos entre Azure Cloud e Oracle Cloud para máxima eficiência e escalabilidade.
 
-## 🏗️ **Arquitetura Geral**
-
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   HelpFast      │    │   HelpFast      │    │   HelpFast      │
-│   Web App       │    │   Mobile App    │    │   Desktop App   │
-│ (ASP.NET Core)  │    │   (Flutter)     │    │ (WinForms.NET)  │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-         │                       │                       │
-         └───────────────────────┼───────────────────────┘
-                                 │
-                    ┌─────────────────┐
-                    │   API Gateway   │
-                    │  (Load Balancer)│
-                    └─────────────────┘
-                                 │
-         ┌───────────────────────┼───────────────────────┐
-         │                       │                       │
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   HelpFast      │    │   Java API      │    │   Azure SQL     │
-│   WebApp        │    │   (Oracle       │    │   Database      │
-│ (Oracle Cloud)  │    │    Cloud)       │    │ (Free Tier)     │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-```
-
 ## ☁️ **Infraestrutura Cloud**
 
 ### **Azure Cloud (Free Tier)**
 - **Azure SQL Database:** Banco de dados principal
-- **Azure Storage:** Armazenamento de arquivos
-- **Azure App Service:** Hospedagem web (futuro)
-- **Azure Monitor:** Monitoramento e logs
 
 ### **Oracle Cloud (Free Tier)**
-- **HelpFast WebApp:** Aplicação web principal
-- **Java API:** API de integração com IA
-- **Oracle Database:** Banco de dados secundário (futuro)
+- **Java API:** API de integração com IA e notificações
+- **OpenAI Integration:** Processamento de IA via Java API
+- **Email Service:** Serviço de notificações por email
 - **Oracle Container Engine:** Deploy de containers
 
 ## 🗄️ **Banco de Dados**
@@ -101,153 +73,60 @@ CREATE TABLE Notificacoes (
 ## 🔧 **Componentes Técnicos**
 
 ### **1. HelpFast WebApp (ASP.NET Core)**
-```csharp
-// Startup.cs
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseSqlServer(connectionString));
-    
-    services.AddScoped<IUsuarioService, UsuarioService>();
-    services.AddScoped<IChamadoService, ChamadoService>();
-    services.AddScoped<INotificacaoService, NotificacaoService>();
-    
-    services.AddControllers();
-    services.AddSwaggerGen();
-}
-
-// Program.cs
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
-
-app.UseRouting();
-app.MapControllers();
-app.Run();
-```
+- **Framework:** ASP.NET Core 8.0
+- **Banco de Dados:** Conexão direta com Azure SQL Database
+- **Integração:** Comunicação HTTP com Java API
+- **Funcionalidades:** Interface web, gerenciamento de chamados, autenticação
 
 ### **2. Java API (Oracle Cloud)**
-```java
-@SpringBootApplication
-@RestController
-@RequestMapping("/api")
-public class HelpFastAIApplication {
-    
-    @Autowired
-    private OpenAIService openAIService;
-    
-    @PostMapping("/chat")
-    public ResponseEntity<AIResponse> chat(@RequestBody ChatRequest request) {
-        // Processamento de IA
-        String response = openAIService.processChat(request.getMessage());
-        return ResponseEntity.ok(new AIResponse(response));
-    }
-}
-```
+- **Framework:** Spring Boot
+- **Integração:** OpenAI API para processamento de IA
+- **Funcionalidades:** Categorização automática, atribuição automática, notificações por email
+- **Contrato:** API REST com documentação Swagger
 
 ### **3. Desktop App (WinForms.NET)**
-```csharp
-// Program.cs
-static void Main()
-{
-    ApplicationConfiguration.Initialize();
-    
-    var host = CreateHostBuilder().Build();
-    
-    using (var scope = host.Services.CreateScope())
-    {
-        var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-        context.Database.EnsureCreated();
-    }
-    
-    var loginForm = host.Services.GetRequiredService<LoginForm>();
-    Application.Run(loginForm);
-}
-```
+- **Framework:** .NET 8.0 WinForms
+- **Banco de Dados:** Conexão direta com Azure SQL Database
+- **Integração:** Comunicação HTTP com Java API
+- **Funcionalidades:** Interface desktop, gerenciamento de chamados, autenticação
+
+### **4. Mobile App (Java Android)**
+- **Framework:** Java Android
+- **Banco Local:** SQLite para cache offline
+- **Sincronização:** Azure SQL Database via API
+- **Integração:** Comunicação HTTP com Java API
+- **Funcionalidades:** Interface mobile, gerenciamento de chamados, sincronização offline
 
 ## 🔌 **Integrações Externas**
 
 ### **OpenAI API**
-```json
-{
-  "openai": {
-    "apiKey": "sk-...",
-    "model": "gpt-4",
-    "temperature": 0.7,
-    "maxTokens": 1000,
-    "timeout": 30
-  }
-}
-```
+- **Modelo:** GPT-4
+- **Funcionalidades:** Categorização automática, análise de contexto, chat inteligente
+- **Integração:** Via Java API
 
 ### **Serviços de Email**
-```json
-{
-  "email": {
-    "smtp": {
-      "host": "smtp.gmail.com",
-      "port": 587,
-      "username": "helpfast@company.com",
-      "password": "app-password"
-    }
-  }
-}
-```
+- **REST:** Configuração para envio de notificações
+- **Templates:** Templates HTML para diferentes tipos de notificação
+- **Integração:** Via Java API
 
 ## 🔐 **Segurança e Autenticação**
 
 ### **Autenticação JWT**
-```csharp
-public class JwtService
-{
-    public string GenerateToken(Usuario usuario)
-    {
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtKey));
-        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-        
-        var token = new JwtSecurityToken(
-            issuer: _issuer,
-            audience: _audience,
-            claims: GetClaims(usuario),
-            expires: DateTime.Now.AddHours(8),
-            signingCredentials: creds
-        );
-        
-        return new JwtSecurityTokenHandler().WriteToken(token);
-    }
-}
-```
+- **Token:** JWT para autenticação entre plataformas
+- **Expiração:** 8 horas
+- **Claims:** Informações do usuário e permissões
 
 ### **Criptografia de Senhas**
-```csharp
-public class PasswordService
-{
-    public string HashPassword(string password)
-    {
-        return BCrypt.Net.BCrypt.HashPassword(password);
-    }
-    
-    public bool VerifyPassword(string password, string hash)
-    {
-        return BCrypt.Net.BCrypt.Verify(password, hash);
-    }
-}
-```
+- **Algoritmo:** BCrypt
+- **Salt:** Geração automática de salt
+- **Verificação:** Validação segura de senhas
 
 ## 📊 **Monitoramento e Logs**
 
 ### **Estrutura de Logs**
-```json
-{
-  "timestamp": "2024-01-15T10:30:00Z",
-  "level": "INFO",
-  "service": "HelpFast.WebApp",
-  "message": "User login successful",
-  "userId": 123,
-  "ipAddress": "192.168.1.100",
-  "userAgent": "Mozilla/5.0...",
-  "correlationId": "abc-123-def"
-}
-```
+- **Formato:** JSON estruturado
+- **Campos:** Timestamp, nível, serviço, mensagem, usuário, IP, correlation ID
+- **Retenção:** 7 anos para auditoria
 
 ### **Métricas de Performance**
 - **Tempo de Resposta:** < 2 segundos
@@ -258,36 +137,14 @@ public class PasswordService
 ## 🚀 **Deploy e DevOps**
 
 ### **Pipeline CI/CD**
-```yaml
-# .github/workflows/deploy.yml
-name: Deploy HelpFast
-on:
-  push:
-    branches: [main]
-
-jobs:
-  deploy-web:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v1
-      - name: Build
-        run: dotnet build
-      - name: Deploy to Oracle Cloud
-        run: docker build -t helpfast-web .
-```
+- **GitHub Actions:** Deploy automático
+- **Branches:** Main branch trigger
+- **Ambientes:** Desenvolvimento, teste, produção
 
 ### **Containerização**
-```dockerfile
-# Dockerfile
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
-WORKDIR /app
-COPY . .
-RUN dotnet build
-EXPOSE 80
-ENTRYPOINT ["dotnet", "run"]
-```
+- **Docker:** Containerização dos serviços
+- **Base Images:** .NET 8.0, Java 17
+- **Orquestração:** Docker Compose para desenvolvimento
 
 ## 📱 **Multiplataforma**
 
@@ -302,50 +159,77 @@ ENTRYPOINT ["dotnet", "run"]
 - **Database:** Entity Framework Core
 - **Deploy:** Executável Windows
 
-### **Mobile App (Futuro - Flutter)**
-- **Framework:** Flutter
+### **Mobile App (Java Android)**
+- **Framework:** Java Android
 - **Backend:** REST API
 - **Database:** SQLite local + API sync
 
 ## 🔄 **Comunicação entre Componentes**
 
-### **API REST**
-```csharp
-[ApiController]
-[Route("api/[controller]")]
-public class ChamadosController : ControllerBase
-{
-    [HttpGet]
-    public async Task<ActionResult<List<Chamado>>> GetChamados()
-    {
-        var chamados = await _chamadoService.ListarTodosChamadosAsync();
-        return Ok(chamados);
-    }
-    
-    [HttpPost]
-    public async Task<ActionResult<Chamado>> CriarChamado([FromBody] Chamado chamado)
-    {
-        var novoChamado = await _chamadoService.CriarChamadoAsync(chamado);
-        return CreatedAtAction(nameof(GetChamado), new { id = novoChamado.Id }, novoChamado);
-    }
-}
+### **Fluxo de Comunicação Direta**
+
+#### **1. Acesso às Plataformas:**
+- **Web App (ASP.NET Core):** Acesso direto ao Azure SQL Database
+- **Mobile App (Java Android):** Acesso direto ao Azure SQL Database
+- **Desktop App (C#):** Acesso direto ao Azure SQL Database
+
+#### **2. Integração com IA:**
+- **Todas as plataformas** se comunicam diretamente com **Java API**
+- **Java API** integra com **OpenAI API** para processamento de IA
+- **Java API** é responsável por:
+  - Categorização automática de chamados
+  - Atribuição automática de chamados
+  - Análise de padrões e recorrência
+
+#### **3. Sistema de Notificações:**
+- **Java API** é responsável por enviar notificações via email
+- **Notificações** são disparadas quando há alteração de status
+- **Email Service** integrado ao Java API
+
+### **Comunicação - Web App**
+- **Banco de Dados:** Acesso direto ao Azure SQL Database
+- **Java API:** Chamadas HTTP para processamento de IA
+- **Fluxo:** Salva chamado → Chama Java API → Recebe resposta
+
+### **Comunicação - Java API**
+- **OpenAI:** Integração para categorização e análise
+- **Email:** Envio de notificações automáticas
+- **Fluxo:** Recebe chamado → Processa IA → Atribui técnico → Envia notificação
+
+## 📊 **Fluxo de Dados Detalhado**
+
+### **1. Criação de Chamado:**
+```
+Cliente → Plataforma (Web/Mobile/Desktop) → Azure SQL Database
+                ↓
+         Java API (categorização) → OpenAI API
+                ↓
+         Atribuição automática → Azure SQL Database
+                ↓
+         Email Service → Notificação para técnico
 ```
 
-### **SignalR (Tempo Real)**
-```csharp
-public class NotificationHub : Hub
-{
-    public async Task JoinGroup(string groupName)
-    {
-        await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
-    }
-    
-    public async Task SendNotification(string userId, string message)
-    {
-        await Clients.Group($"user_{userId}").SendAsync("ReceiveNotification", message);
-    }
-}
+### **2. Processamento com IA:**
 ```
+Chamado → Java API → OpenAI API → Análise → Categoria → Atribuição → Notificação
+```
+
+### **3. Consulta de Dados:**
+```
+Plataforma → Azure SQL Database (acesso direto)
+```
+
+### **4. Notificações:**
+```
+Mudança Status → Java API → Email Service → Cliente/Técnico
+```
+
+## 🔄 **Comunicação em Tempo Real**
+
+### **SignalR (Futuro)**
+- **Tempo Real:** Notificações instantâneas
+- **Grupos:** Organização por usuário
+- **Funcionalidades:** Chat, notificações push, atualizações em tempo real
 
 ## 📈 **Escalabilidade**
 
@@ -382,4 +266,3 @@ public class NotificationHub : Hub
 - **API First:** Todas as funcionalidades expostas via API
 - **Event Driven:** Comunicação baseada em eventos
 - **Observability:** Monitoramento completo do sistema
-

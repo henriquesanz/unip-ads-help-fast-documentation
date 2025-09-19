@@ -81,16 +81,24 @@ public class AIContext
 - **Escalação Inteligente:** Redireciona para humano quando necessário
 
 ### **2. Análise de Chamados**
-- **Categorização Automática:** Sugere categoria baseada na descrição
+- **Categorização Automática:** Analisa conteúdo e atribui categoria automaticamente
 - **Priorização Inteligente:** Define prioridade baseada no conteúdo
 - **Sugestão de FAQ:** Recomenda artigos relevantes
 - **Detecção de Urgência:** Identifica problemas críticos
+- **Atribuição Automática:** Sugere técnico mais adequado baseado na categoria
+- **Análise de Padrões:** Identifica problemas recorrentes e tendências
 
 ### **3. Suporte Proativo**
 - **Prevenção de Problemas:** Sugere soluções antes do problema ocorrer
 - **Alertas Inteligentes:** Notifica sobre problemas potenciais
 - **Recomendações Personalizadas:** Baseadas no histórico do usuário
 - **Atualizações Automáticas:** Informa sobre novas funcionalidades
+
+### **4. Automação de Chamados**
+- **Categorização Automática:** IA analisa e categoriza chamados automaticamente
+- **Atribuição Inteligente:** Direciona chamados para técnicos especializados
+- **Análise de Padrões:** Identifica problemas recorrentes e tendências
+- **Otimização de Fluxo:** Melhora continuamente o processo de atendimento
 
 ## 🔄 **Fluxo de Interação**
 

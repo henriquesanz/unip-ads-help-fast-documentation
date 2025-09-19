@@ -32,13 +32,6 @@
 - **Senha:** `123`
 - **Resultado:** Mensagem "A senha deve ter pelo menos 6 caracteres"
 
-## Como Testar
-
-1. Acesse `https://localhost:5001`
-2. Teste cada cenário acima
-3. Verifique se as mensagens de erro aparecem corretamente
-4. Verifique se o estilo visual está adequado
-
 ## Dados de Teste Disponíveis
 
 ### Usuário Administrador (Pré-cadastrado)

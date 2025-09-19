@@ -50,6 +50,11 @@ O sistema implementa três tipos de usuários com diferentes níveis de acesso e
 
 ## 🎯 **Regras de Negócio**
 
+### **Hierarquia de Perfis:**
+- **Usuário (Cliente):** Nível básico - apenas seus próprios chamados
+- **Técnico:** Nível intermediário - chamados atribuídos + visualização geral
+- **Administrador:** Nível máximo - acesso total ao sistema
+
 ### **Cadastro de Usuários:**
 1. **Clientes:** Qualquer pessoa pode se auto-cadastrar
 2. **Técnicos:** Apenas Administradores podem cadastrar
