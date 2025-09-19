@@ -2,7 +2,7 @@
 
 ## 🎯 **Visão Geral**
 
-O HelpFast é um sistema multiplataforma de gerenciamento de chamados de suporte técnico, desenvolvido para reduzir custos operacionais, melhorar a experiência do cliente e otimizar processos de atendimento através de automação inteligente.
+O HelpFast é um sistema multiplataforma de gerenciamento de chamados de suporte técnico, desenvolvido para reduzir custos operacionais, melhorar a experiência do cliente e otimizar processos de atendimento através de automação inteligente. O sistema oferece aplicações nativas para Web (ASP.NET Core), Mobile (Java Android) e Desktop (C#), todas integradas através de uma API Java centralizada para inteligência artificial e um banco de dados Azure SQL.
 
 ## 📋 **Índice da Documentação**
 
@@ -49,9 +49,11 @@ O HelpFast é um sistema multiplataforma de gerenciamento de chamados de suporte
 - Agendamento automático
 
 ### **7. 🏗️ [Arquitetura do Sistema](ARQUITETURA_SISTEMA.md)**
-- Arquitetura multiplataforma
-- Componentes Azure e Oracle Cloud
-- Banco de dados Azure SQL
+- Arquitetura multiplataforma (Web, Mobile, Desktop)
+- Azure Cloud: Banco de dados SQL
+- Oracle Cloud: WebApp ASP.NET Core e Java API
+- Aplicativos nativos: Android (Java) e Desktop (C#)
+- Integração centralizada com IA via Java API
 - Segurança e autenticação
 - Deploy e DevOps
 
@@ -70,21 +72,12 @@ O HelpFast é um sistema multiplataforma de gerenciamento de chamados de suporte
 
 ## 🚀 **Quick Start**
 
-### **1. Executar o Sistema**
-```bash
-# Compilar o projeto
-dotnet build
-
-# Executar a aplicação
-dotnet run
-```
-
-### **2. Fazer Login**
+### **1. Fazer Login**
 - **URL:** http://localhost:5000
 - **Email:** admin@helpfast.com
 - **Senha:** 123456
 
-### **3. Navegar pelo Sistema**
+### **2. Navegar pelo Sistema**
 - **Dashboard:** Funcionalidades por tipo de usuário
 - **Novo Chamado:** Criar solicitação de suporte
 - **Meus Chamados:** Acompanhar status
@@ -119,45 +112,62 @@ dotnet run
 - [ ] Sistema de avaliação
 
 ### 🔴 **Planejado**
-- [ ] Mobile app (Flutter)
-- [ ] Web app (ASP.NET Core)
+- [ ] HelpFast Mobile App (Java Android)
+- [ ] HelpFast WebApp (ASP.NET Core)
+- [ ] Java API para integração com IA
+- [ ] Deploy no Oracle Cloud
 - [ ] Integração com sistemas externos
 - [ ] Machine learning avançado
 - [ ] Sistema de SLA automatizado
 
 ## 🛠️ **Tecnologias Utilizadas**
 
-### **Backend**
-- **.NET 8.0:** Framework principal
-- **Entity Framework Core:** ORM
-- **SQL Server:** Banco de dados
-- **Dependency Injection:** Arquitetura
+### **☁️ Azure Cloud (Free Tier)**
+- **Azure SQL Database:** Banco de dados relacional para armazenar todas as informações do sistema
 
-### **Frontend**
+### **☁️ Oracle Cloud (Free Tier)**
+- **HelpFast WebApp:** Serviço de aplicação ASP.NET Core para versão web
+- **Java API:** API dedicada para integração com IA, centralizando a lógica do chatBot
+- **Oracle Cloud Infrastructure:** Hospedagem dos serviços web
+
+### **📱 HelpFast Mobile App (Nativo)**
+- **Java Android:** Aplicativo mobile nativo
+- **Android SDK:** Desenvolvimento nativo
+- **Material Design:** Interface do usuário
+- **SQLite:** Banco local para cache offline
+
+### **🖥️ HelpFast Desktop App (Nativo)**
+- **C# .NET 8.0:** Aplicativo desktop nativo
 - **WinForms:** Interface desktop
+- **Entity Framework Core:** ORM para banco de dados
 - **Material Design:** Componentes visuais
-- **Responsive Layout:** Adaptação de tela
 
-### **Cloud & DevOps**
-- **Azure SQL Database:** Banco de dados
-- **Oracle Cloud:** Hospedagem (futuro)
+### **🔗 Integrações e APIs**
+- **OpenAI API:** Inteligência artificial para chatBot
+- **Java API:** Centralização da lógica de IA
+- **REST APIs:** Comunicação entre componentes
+- **SMTP:** Envio de notificações por email
+
+### **🛠️ Ferramentas de Desenvolvimento**
 - **GitHub:** Controle de versão
-- **Docker:** Containerização (futuro)
-
-### **Integrações**
-- **OpenAI API:** Inteligência artificial
-- **SMTP:** Envio de emails
-- **SignalR:** Comunicação em tempo real (futuro)
+- **Visual Studio:** IDE para desenvolvimento .NET
+- **Android Studio:** IDE para desenvolvimento Android
+- **Docker:** Containerização
 
 ## 📞 **Suporte e Contato**
 
 ### **Desenvolvimento**
 - **Desenvolvedor:** José Henrique Paiva
+- **Desenvolvedor:** Gabriel Birolli Correa
+- **Desenvolvedor:** Lorena Miyuki Oliveira Suzuki
+- **Desenvolvedor:** Matheus Bonfim Pezzotti
+- **Desenvolvedor:** Murilo Augusto E F Vieira
+- **Desenvolvedor:** Pedro Henrique Pavani
 - **Projeto:** UNIP ADS PIM - Suporte IA
 - **Versão:** 1.0.0
 
 ### **Documentação**
-- **Última Atualização:** Janeiro 2024
+- **Última Atualização:** Setembro 2025
 - **Versão da Documentação:** 1.0.0
 - **Idioma:** Português (Brasil)
 
@@ -173,14 +183,8 @@ dotnet run
 - Implementar hash BCrypt em produção
 - Configurar HTTPS em ambiente de produção
 
-### **📈 Roadmap**
-- **Q1 2024:** Integração com IA
-- **Q2 2024:** Sistema de FAQ
-- **Q3 2024:** Mobile app
-- **Q4 2024:** Web app e deploy em produção
 
 ---
 
 **HelpFast** - Sistema Inteligente de Gerenciamento de Chamados  
 *Transformando o suporte técnico através de automação e inteligência artificial*
-
